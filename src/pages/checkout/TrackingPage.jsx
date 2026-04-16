@@ -5,6 +5,7 @@ import './TrackingPage.css';
 export const TrackingPage = () => {
   return (
     <>
+      <link rel="icon" type="image/svg+xml" href="../../../public/tracking-favicon.png" />
       <title>Tracking</title>
 
       <Header /> 
