@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const App = () => {
+        const [count, setCount] = React.useState(0);
+        const currentCountRef = React.useRef();
+        const resetRef = React.useRef();
+
+        const clicked = () => {
+          setCount((count) => (count += 1));
+        };
+
+        const resetBtn = () => {
+          setCount(0);
+          clearInterval(resetRef.current);
+        };
+
+        const autoClickBtn = () => {
+          resetRef.current = setInterval(() => {
+            const buttonEl = currentCountRef.current;
+            if (buttonEl) {
+              buttonEl.click();
+              console.log('click');
+            }
+          }, 1000);
+        };
+
+        return (
+          <>
+            <div>
+              <button onClick={clicked} ref={currentCountRef}>
+                Clicked {count} {count <= 1 ? 'time' : 'times'}
+              </button>
+              <button onClick={resetBtn}>Reset</button>
+              <button onClick={autoClickBtn}>Auto Click</button>
+            </div>
+          </>
+        );
+      };
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

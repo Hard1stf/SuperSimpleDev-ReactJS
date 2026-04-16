@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+        .prim-btn{
+            background-color: rgb(0, 123, 255);
+            color: aliceblue;
+            border: none;
+            padding: .5rem;
+            margin: .2rem;
+            /* font-size: 1.5rem; */
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .hide-btn{
+            margin-left: 1rem;
+            cursor: pointer;
+       }
+       input{
+        font-size: 1.1rem;
+        padding: .5rem .7rem;
+        border-radius: 10px;
+       }
+       .password-con{
+        margin-top: 1rem;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const LoginForm = () => {
+        const [showPassword, setShowPassword] = React.useState(false);
+        const passwordSwitch = () => {
+            setShowPassword(p => !p)
+        }
+        return (
+          <>
+            <div>
+              <input type="email" placeholder="email" />
+            </div>
+            <div className="password-con">
+              <input type={showPassword ? "password" : "text"} placeholder="password" />
+              <button className='hide-btn' onClick={passwordSwitch}>{showPassword ? "Show" : "Hide"}</button>
+            </div>
+
+            <button className='prim-btn'>Login</button>
+          </>
+        );
+      };
+
+      const App = () => {
+        return (
+          <>
+            <p>Hello, Welcome to my website</p>
+            <LoginForm />
+            <button className='prim-btn'>Sign Up</button>
+          </>
+        );
+      };
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

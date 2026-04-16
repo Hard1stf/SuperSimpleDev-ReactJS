@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const ProductDetails = ({ pName, price, discount, imgSrc }) => {
+        return (
+          <>
+          <img src={imgSrc} width='130' />
+          <p>{pName}</p>
+          {discount ? (
+              <>
+                <p>
+                  <del>Price: ${price}</del>
+                </p>
+                <p>Discount price: ${discount}</p>
+              </>
+            ) : (
+              <p>Price: ${price}</p>
+            )}
+            <button>Add to cart</button>
+          </>
+        );
+      };
+
+      const App = () => {
+        return (
+          <>
+            <ProductDetails pName="Cotton socks" price="10.9" discount="5.45" imgSrc="https://supersimple.dev/projects/amazon/images/products/athletic-cotton-socks-6-pairs.jpg" />
+            <hr />
+            <ProductDetails pName="Tennis balls" price="6.00" imgSrc="https://supersimple.dev/images/tennis-balls.png" />
+            <hr />
+            <ProductDetails pName="Plain T-Shirt" price="7.99" discount="4.45" imgSrc="https://supersimple.dev/images/plain-t-shirt.png" />
+          </>
+        );
+      };
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
