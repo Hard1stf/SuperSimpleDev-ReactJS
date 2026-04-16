@@ -1,4 +1,4 @@
-import { Header } from '../Components/Header';
+import { Header } from '../../Components/Header';
 import './HomePage.css';
 
 export const HomePage = () => {

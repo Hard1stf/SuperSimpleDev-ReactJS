@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router';
-import { HomePage } from './pages/HomePages';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { OrdersPage } from './pages/OrdersPage';
-import { TrackingPage } from './pages/TrackingPage';
+import { HomePage } from './pages/checkout/HomePages';
+import { CheckoutPage } from './pages/checkout/CheckoutPage';
+import { OrdersPage } from './pages/checkout/OrdersPage';
+import { TrackingPage } from './pages/checkout/TrackingPage';
 
 import './App.css'
 
