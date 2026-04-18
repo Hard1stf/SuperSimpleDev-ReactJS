@@ -3,24 +3,18 @@ import { useEffect, useState } from 'react';
 import { Header } from '../../Components/Header';
 import './HomePage.css';
 
-export const HomePage = () => {
+export const HomePage = ({cart}) => {
 
   // fetch('http://localhost:3000/api/products')
   //   .then(res => res.json()).then(data => console.log(data))
 
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get('/api/products')
     .then(res => {
       setProducts(res.data);
     });
-
-    axios.get('/api/cart-items')
-    .then(res => {
-      setCart(res.data);
-    })
   }, []);
 
   return (
