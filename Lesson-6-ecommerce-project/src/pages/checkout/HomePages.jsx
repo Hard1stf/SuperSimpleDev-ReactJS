@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Header } from '../../Components/Header';
-import { products } from '../../../starting-code/data/products';
 import './HomePage.css';
 
 export const HomePage = () => {
@@ -8,8 +8,15 @@ export const HomePage = () => {
   // fetch('http://localhost:3000/api/products')
   //   .then(res => res.json()).then(data => console.log(data))
 
-  axios.get('http://localhost:3000/api/products')
-    .then(res => console.log(res.data))
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/products')
+    .then(res => {
+      setProducts(res.data);
+    });
+  }, []);
+
   return (
     <>
       <link
