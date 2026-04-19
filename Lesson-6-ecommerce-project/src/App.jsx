@@ -17,7 +17,7 @@ const App = () => {
     .then(res => {
       setCart(res.data);
     })
-  })
+  }, [])
 
   return (
     <>
