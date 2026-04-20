@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router';
 import axios from 'axios';
-import { HomePage } from './pages/checkout/HomePages';
+import { HomePage } from './home/HomePages';
 import { CheckoutPage } from './pages/checkout/CheckoutPage';
-import { OrdersPage } from './pages/checkout/OrdersPage';
+import { OrdersPage } from './pages/orders/OrdersPage';
 import { TrackingPage } from './pages/checkout/TrackingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
@@ -13,11 +13,10 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/cart-items?expand=product')
-    .then(res => {
+    axios.get('/api/cart-items?expand=product').then((res) => {
       setCart(res.data);
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <>
