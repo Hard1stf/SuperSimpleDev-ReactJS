@@ -17,7 +17,7 @@ export const CheckoutPage = ({ cart }) => {
       setDeliveryOptions(res.data)
 
       res = await axios.get('/api/payment-summary');
-      setPaymentSummary(res2.data)
+      setPaymentSummary(res.data)
     }
     getCheckoutData();
   }, []);
