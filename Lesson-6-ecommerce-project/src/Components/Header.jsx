@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import './Header.css';
-import Logo from '../assets/images/logo.png';
+import Logo from '../assets/images/logo-white.png';
 import MobileLogo from '../assets/images/mobile-logo.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import CartIcon from '../assets/images/icons/cart-icon.png';
