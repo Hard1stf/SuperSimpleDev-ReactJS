@@ -20,6 +20,12 @@ export const TrackingPage = ({cart}) => {
   if (!order) return null;
 
   const orderProducts = order.products.find((orderProduct) => orderProduct.productId === productId);
+  const totalDeliveryTimeMs = orderProducts.estimatedDeliveryTimeMs - order.orderTimeMs;
+
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+  let deliveryPercent = (timePassedMs / totalDeliveryTimeMs) * 100;
+
+  if (deliveryPercent > 100) deliveryPercent = 100;
 
   return (
     <>
@@ -54,7 +60,7 @@ export const TrackingPage = ({cart}) => {
           </div>
 
           <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar" style={{width: `${deliveryPercent}%`}}></div>
           </div>
         </div>
       </div>
