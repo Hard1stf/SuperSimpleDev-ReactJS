@@ -7,11 +7,8 @@ import CartIcon from '../assets/images/icons/cart-icon.png';
 
 export const Header = ({ cart }) => {
   let totalQuantity = 0;
-
-  cart.forEach((cartItem) => {
-    totalQuantity += cartItem.quantity;
-    // console.log(cartItem.quantity);
-  });
+console.log(cart);
+  cart.forEach(cartItem => totalQuantity += cartItem.quantity);
 
   return (
     <>
