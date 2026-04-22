@@ -2,7 +2,7 @@ import { formatMoney } from '../../utils/money';
 import { OrdersDetailsGrid } from './OrdersDetailsGrid';
 import { OrdersHeader } from './OrdersHeader';
 
-export const OrdersGrid = ({ orders }) => {
+export const OrdersGrid = ({ orders, loadCart }) => {
   return (
     <>
       <div className="orders-grid">
@@ -13,7 +13,7 @@ export const OrdersGrid = ({ orders }) => {
                 
                 <OrdersHeader order={order}/>
                 
-                <OrdersDetailsGrid order={order}/>
+                <OrdersDetailsGrid order={order} loadCart={loadCart}/>
 
               </div>
             </>
