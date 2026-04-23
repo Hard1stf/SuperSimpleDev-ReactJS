@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const CartItemDetails = ({ cartItem, loadCart }) => {
   const [isUpdateQuantity, setIsUpdateQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
 
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
@@ -14,6 +15,11 @@ export const CartItemDetails = ({ cartItem, loadCart }) => {
     setIsUpdateQuantity(q => !q);
   }
   
+  const updateInput = event => {
+    setQuantity(event.target.value);
+  }
+
+
   return (
     <>
       <img className="product-image" src={cartItem.product.image} />
@@ -26,7 +32,7 @@ export const CartItemDetails = ({ cartItem, loadCart }) => {
         <div className="product-quantity">
           <span> Quantity:{' '}
           {isUpdateQuantity ? 
-            <input type="text" className="update-quantity" /> : 
+            <input type="text" className="update-quantity" value={quantity} onChange={updateInput}/> : 
             <span className="quantity-label">{cartItem.quantity}</span>
           }
           </span>
