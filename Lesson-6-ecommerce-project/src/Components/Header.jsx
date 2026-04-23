@@ -1,13 +1,16 @@
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate, useSearchParams } from 'react-router';
+import { useState } from 'react';
 import './Header.css';
 import Logo from '../assets/images/logo-white.png';
 import MobileLogo from '../assets/images/mobile-logo.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import CartIcon from '../assets/images/icons/cart-icon.png';
-import { useState } from 'react';
 
 export const Header = ({ cart }) => {
-  const [searchInput, setSearchInput] = useState('');
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchText = searchParams.get('search');
+  const [searchInput, setSearchInput] = useState(searchText || '');
 
   let totalQuantity = 0;
   cart.forEach(cartItem => totalQuantity += cartItem.quantity);
@@ -18,6 +21,7 @@ export const Header = ({ cart }) => {
 
   const searchBarInput = event => {
     console.log(searchInput);
+    navigate(`/?search=${searchInput}`);
   }
 
   return (
