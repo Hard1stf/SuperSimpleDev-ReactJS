@@ -11,14 +11,19 @@ export const CartItemDetails = ({ cartItem, loadCart }) => {
     await loadCart();
   };
 
-  const updateQuantityState = () => {
-    setIsUpdateQuantity(q => !q);
+  const updateQuantityState = async () => {
+    setIsUpdateQuantity(q => !q); 
+
+    await axios.put(`/api/cart-items/${cartItem.productId}`,{ 
+      quantity: Number(quantity),
+    });
+
+    await loadCart();
   }
   
   const updateInput = event => {
     setQuantity(event.target.value);
   }
-
 
   return (
     <>
