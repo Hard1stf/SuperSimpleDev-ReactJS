@@ -64,7 +64,7 @@ export const Product = ({ product, loadCart }) => {
 
         <div className="added-to-cart" style={{opacity: showAddedMessage ? 1 : 0}}> <img src="images/icons/checkmark.png" /> Added</div>
 
-        <button className="add-to-cart-button button-primary" onClick={addToCard}> Add to Cart </button>
+        <button className="add-to-cart-button button-primary" onClick={addToCard} data-testid='add-to-cart-btn'> Add to Cart </button>
       </div>
     </>
   );
