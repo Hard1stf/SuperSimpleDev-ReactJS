@@ -51,15 +51,21 @@ describe('Product Component', () => {
 
   it('adds a product to the cart', async () => {
     render(<Product product={product} loadCart={loadCart} />);
-
+    
     const user = userEvent.setup();
     const addToCartButton = screen.getByTestId('add-to-cart-btn');
     await user.click(addToCartButton);
-
+    
     expect(axios.post).toHaveBeenCalledWith('/api/cart-items', {
       productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
       quantity: 1,
     });
     expect(loadCart).toHaveBeenCalled();
   });
+  
+  it('select a quantity', () => {
+    render(<Product product={product} loadCart={loadCart} />);
+    const quantitySelected = screen.getByTestId('product-quantity-selector');
+    expect(quantitySelected).toHaveValue('1')
+  })
 });
