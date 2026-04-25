@@ -65,11 +65,19 @@ describe('Product Component', () => {
   
   it('select a quantity', async () => {
     render(<Product product={product} loadCart={loadCart} />);
-
+    
     const user = userEvent.setup();
     const quantitySelected = screen.getByTestId('product-quantity-selector');
+    const addToCartButton = screen.getByTestId('add-to-cart-btn');
     await user.selectOptions(quantitySelected, '3');
+    await user.click(addToCartButton);
+
+    expect(axios.post).toHaveBeenCalledWith('/api/cart-items', {
+      productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+      quantity : 3,
+    });
+    expect(loadCart).toHaveBeenCalled();
 
     expect(quantitySelected).toHaveValue('3')
-  })
+  });
 });
