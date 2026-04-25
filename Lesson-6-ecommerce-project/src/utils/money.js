@@ -1,3 +1,8 @@
 export const formatMoney = (amountCents) => {
-    return `$${(amountCents / 100).toFixed(2)}`
+    if(amountCents < 0){
+        amountCents *= -1;
+        // console.log(amountCents);
+        return `-$${(amountCents / 100).toFixed(2)}`;
+    }
+    return `$${(amountCents / 100).toFixed(2)}`;
 } 
