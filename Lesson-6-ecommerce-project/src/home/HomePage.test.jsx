@@ -91,21 +91,29 @@ describe('HomePage Component', () => {
     );
 
     const productContainers = await screen.findAllByTestId('product-container');
-
+    
+    // Load quantity selector in the product container [0], and trigger user event with value 2.
+    const quantitySelector1 = within(productContainers[0]).getByTestId('product-quantity-selector');
+    await user.selectOptions(quantitySelector1, '2')
+    
     const addToCartButton1 = within(productContainers[0]).getByTestId('add-to-cart-btn');
     await user.click(addToCartButton1); // click first add to card button.
+    
+    // Load quantity selector in the product container [1], and trigger user event with value 3.
+    const quantitySelector2 = within(productContainers[1]).getByTestId('product-quantity-selector');
+    await user.selectOptions(quantitySelector2, '3')
 
     const addToCartButton2 = within(productContainers[1]).getByTestId('add-to-cart-btn');
     await user.click(addToCartButton2); // click second add to card button.
 
     expect(axios.post).toHaveBeenNthCalledWith(1, '/api/cart-items', {
       productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-      quantity: 1,
+      quantity: 2,
     }); // 
 
     expect(axios.post).toHaveBeenNthCalledWith(2, '/api/cart-items', {
       productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-      quantity: 1,
+      quantity: 3,
     });
 
     // Test if the Load Cart function runs twice.
